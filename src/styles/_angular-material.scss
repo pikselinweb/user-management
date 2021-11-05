@@ -1,14 +1,21 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 @include mat.core();
 
 $user-management-interview-primary: mat.define-palette(mat.$indigo-palette);
-$user-management-interview-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$user-management-interview-accent: mat.define-palette(
+  mat.$pink-palette,
+  A200,
+  A100,
+  A400
+);
 $user-management-interview-warn: mat.define-palette(mat.$red-palette);
-$user-management-interview-theme: mat.define-light-theme((
-  color: (
-    primary: $user-management-interview-primary,
-    accent: $user-management-interview-accent,
-    warn: $user-management-interview-warn,
+$user-management-interview-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $user-management-interview-primary,
+      accent: $user-management-interview-accent,
+      warn: $user-management-interview-warn,
+    ),
   )
-));
+);
 @include mat.all-component-themes($user-management-interview-theme);
