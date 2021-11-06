@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 // SHARED MODULE
 import { SharedModule } from '@shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
@@ -21,6 +22,7 @@ import { UserListComponent as UserListPage } from './user-list/user-list.compone
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
+    MatTooltipModule,
     SharedModule,
     PagesRoutingModule,
   ],

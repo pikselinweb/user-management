@@ -3,12 +3,36 @@
     <div class="d-flex align-items-center justify-content-between">
       <div class="app-logo">
         <!-- ! Logo should be svg or shoud as srcset -->
-        <img src="assets/images/logo-header.png" alt="site-logo" loading="lazy" height="30px" />
+        <img
+          src="assets/images/logo-header.png"
+          alt="site-logo"
+          loading="lazy"
+          height="30px"
+        />
       </div>
-      <div class="toolbar-actions">
-        <!-- USER MENU -->
+      <div class="toolbar-navigation">
         <ng-container *ngIf="currentUser | async as user">
+          <a
+            mat-icon-button
+            [routerLink]="['/']"
+            matTooltip="Home"
+            color="primart"
+          >
+            <mat-icon>home</mat-icon>
+          </a>
+          <a
+            mat-icon-button
+            [routerLink]="['/user-list']"
+            matTooltip="Menu List"
+            color="primart"
+            *ngIf="user.role>1"
+          >
+            <mat-icon>group</mat-icon>
+          </a>
+          <!-- USER MENU -->
+
           <button
+            matTooltip="User Menu"
             mat-icon-button
             [matMenuTriggerFor]="menu"
             aria-label="User Menu"
