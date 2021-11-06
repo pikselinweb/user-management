@@ -50,6 +50,11 @@ export class UserListComponent implements OnInit {
         );
         if (userIndex >= 0) {
           this.userList[userIndex] = userData;
+          this.messageService.show({
+            message:
+              'User has been updated successfuly but changes wont save to db. JSON SERVER AUTH package does not support push method',
+            duration: 4000,
+          });
         }
       }
     } catch (error: any) {

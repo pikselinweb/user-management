@@ -22,7 +22,7 @@ export class UserFromComponent implements OnInit {
   readonly userRoles = [
     { val: 1, viewVal: 'User' },
     { val: 2, viewVal: 'Admin' },
-    { val: 3, viewVal: 'SuberAdmin' },
+    { val: 3, viewVal: 'Super Admin' },
   ];
   currentUser: USER | null = this.globalData.currentUser$.getValue();
   // SHOW AND HIDE PW FOR USER EXPERIENCE

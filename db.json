@@ -35,6 +35,13 @@
       "fullName": "Kang Chencu",
       "role": 1,
       "id": 5
+    },
+    {
+      "email": "sjda@ho.co",
+      "password": "$2a$10$Qt1Lpi1.D3PaglysU20EBOnR/9UmwJvQWk5IXjCODtnvDGL9ony.i",
+      "fullName": "She Cask",
+      "role": 2,
+      "id": 6
     }
   ]
 }
