@@ -1,1 +1,15 @@
-<p>user-list works!</p>
+<ng-container *ngIf="userList | async as uList">
+  <div class="add-button-wrapper">
+    <button mat-fab matTooltip="Add New User" color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <ng-container *ngIf="uList.length > 0; else noItemTemplate">
+    <user-table [userList]="uList"></user-table>
+  </ng-container>
+  <ng-template #noItemTemplate>
+    <div class="alert alert-warning">
+      <p>User list have no item</p>
+    </div>
+  </ng-template>
+</ng-container>

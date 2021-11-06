@@ -1,0 +1,31 @@
+<table class="table table-striped table-hover table-bordered mt-3">
+  <thead>
+    <tr>
+      <th style="width: 30px"></th>
+      <th style="width: 30px"></th>
+      <th>Fullname</th>
+      <th>Username</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let user of userList; trackBy: trackByFn"
+      style="vertical-align: middle"
+    >
+      <td>
+        <button mat-icon-button matTooltip="Edit" color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+      <td>
+        <button mat-icon-button matTooltip="Delete" color="warn">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+      <td>{{ user?.fullName }}</td>
+      <td>{{ user?.email }}</td>
+      <td>{{ user?.role }}</td>
+    </tr>
+  </tbody>
+</table>

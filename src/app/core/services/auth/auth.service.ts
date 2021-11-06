@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 // SAVE TOKEN TO COOKIES
 import { CookieService } from 'ngx-cookie-service';
 // SERVICES
-import { ApiService } from '../common';
+import { ApiService, GlobalDataService } from '../common';
 import { SnackMessageService } from '../notifcation';
 // MODELS
 import { HTTP_REQ } from '@models/common';
@@ -18,7 +18,8 @@ export class AuthService {
     private cookieService: CookieService,
     private router: Router,
     private apiService: ApiService,
-    private snackMessage: SnackMessageService
+    private snackMessage: SnackMessageService,
+    private globalDataService: GlobalDataService
   ) {}
   // REGISTER
   async register(formData: REGISTER_FORM_DATA) {
@@ -56,6 +57,7 @@ export class AuthService {
       const userInfo: USER = data[0];
       // ! FALLOWING OPERATION MUST BE IN BACKEND
       delete userInfo.password;
+      this.globalDataService.currentUser$.next(userInfo);
       return userInfo;
     } else {
       this.snackMessage.show({
@@ -67,6 +69,7 @@ export class AuthService {
   // LOGOUT
   logOut() {
     this.cookieService.deleteAll();
+    this.globalDataService.currentUser$.next(null);
     this.router.navigate(['/auth']);
   }
   private setCookiesAndNavigate(oAuthToken: string, email: string) {

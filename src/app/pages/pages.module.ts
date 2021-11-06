@@ -11,12 +11,13 @@ import { PagesRoutingModule } from './pages-routing.module';
 // COMPONENTS
 import { PagesComponent } from './pages.component';
 import { Navbar } from '@shared/components';
+import { UserTable } from './user-list/components';
 //PAGES
 import { HomeComponent as HomePage } from './home/home.component';
 import { UserListComponent as UserListPage } from './user-list/user-list.component';
 
 @NgModule({
-  declarations: [PagesComponent, Navbar, HomePage, UserListPage],
+  declarations: [PagesComponent, Navbar, HomePage, UserListPage, UserTable],
   imports: [
     CommonModule,
     MatIconModule,
