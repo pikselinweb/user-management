@@ -1,3 +1,12 @@
 {
-
+  "users": [
+    {
+      "email": "demo1@ho.co",
+      "password": "$2a$10$u60zXCkdabNd/vopiqwxxOiLI.W3OVX.VZSDaTdrIo/Q.QKkiLrHS",
+      "fullName": "Demo Lord",
+      "bio": "",
+      "role": 1,
+      "id": 1
+    }
+  ]
 }

@@ -1,1 +1,47 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+  <mat-form-field appearance="outline" class="d-block mb-2">
+    <mat-label>Username</mat-label>
+    <input formControlName="email" matInput placeholder="Username" />
+    <mat-error *ngIf="fieldHasError('email')">
+      {{ getErrorMessage("email") }}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="d-block mb-2">
+    <mat-label>Password</mat-label>
+    <input
+      formControlName="password"
+      matInput
+      placeholder="Password"
+      [type]="showPassword ? 'text' : 'password'"
+    />
+    <!-- SHOW AND HIDE PASSWORD -->
+    <button
+      color="accent"
+      matSuffix
+      mat-icon-button
+      [attr.aria-label]="showPassword ? 'Hide' : 'Show'"
+      (click)="showPassword = !showPassword"
+      type="button"
+    >
+      <mat-icon>{{ showPassword ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+    <!-- SHOW AND HIDE PASSWORD -->
+    <mat-error *ngIf="fieldHasError('password')">
+      {{ getErrorMessage("password") }}
+    </mat-error>
+  </mat-form-field>
+
+  <div class="d-flex justify-content-center">
+    <button
+      class="px-5"
+      mat-raised-button
+      color="primary"
+      [disabled]="!loginForm.valid"
+    >
+      Kayıt Ol
+    </button>
+  </div>
+  <div class="navigation-link">
+    <a [routerLink]="['/auth/login']">Register</a>
+  </div>
+</form>
