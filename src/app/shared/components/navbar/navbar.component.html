@@ -1,7 +1,10 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
   <div class="container">
     <div class="d-flex align-items-center justify-content-between">
-      <div class="app-logo">Logo</div>
+      <div class="app-logo">
+        <!-- ! Logo should be svg or shoud as srcset -->
+        <img src="assets/images/logo-header.png" alt="site-logo" loading="lazy" height="30px" />
+      </div>
       <div class="toolbar-actions">
         <!-- USER MENU -->
         <ng-container *ngIf="currentUser | async as user">
