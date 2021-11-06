@@ -7,6 +7,13 @@
       "bio": "",
       "role": 1,
       "id": 1
+    },
+    {
+      "email": "demo2@ho.co",
+      "password": "$2a$10$WI0bJdJQKIYI6kA2jDjNE.NRK5FXyqTVEHwg2HC0E63v5X/PMrk7m",
+      "fullName": "Demo Admin",
+      "role": 1,
+      "id": 2
     }
   ]
 }

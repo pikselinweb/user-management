@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+// GUARDS
+import { AdminGuard } from '@core/guards';
 // PARENT
 import { PagesComponent } from './pages.component';
 // PAGES
@@ -10,12 +12,13 @@ const routes: Routes = [
     path: '',
     component: PagesComponent,
     children: [
-      // SET DEFAULT  PAGE
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      // PAGES
-      { path: 'home', component: HomePage },
-      { path: 'user-list', component: UserListPage },
-
+      { path: '', component: HomePage },
+      {
+        path: 'user-list',
+        component: UserListPage,
+        canLoad: [AdminGuard],
+        canActivate: [AdminGuard],
+      },
     ],
   },
 ];

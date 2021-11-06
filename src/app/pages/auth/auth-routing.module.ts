@@ -15,8 +15,7 @@ const routes: Routes = [
       // LOGIN AND REGISTER PAGES
       { path: 'login', component: LoginPage },
       { path: 'register', component: RegisterPage },
-      // WRONG URL REDIRECT TO LOGIN
-      { path: '**', redirectTo: 'login' },
+
     ],
   },
 ];
