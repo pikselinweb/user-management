@@ -14,6 +14,20 @@
       "fullName": "Demo Admin",
       "role": 3,
       "id": 2
+    },
+    {
+      "email": "zt@ho.co",
+      "password": "$2a$10$KlFT7PEynd8wsRb9isnjcOb9cGGKsYyJL/ncLfPGmnLtP0GLgGG46",
+      "fullName": "Ziya Taşkın",
+      "role": 1,
+      "id": 3
+    },
+    {
+      "email": "john@mail.com",
+      "password": "$2a$10$dNDigDdaBrs0SpGQ8SV8fuO66FW01wdNmVvOANl84Cc73DnyGYGL.",
+      "fullName": "John Green",
+      "role": 1,
+      "id": 4
     }
   ]
 }

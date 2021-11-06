@@ -1,6 +1,11 @@
 <ng-container *ngIf="userList | async as uList">
   <div class="add-button-wrapper">
-    <button mat-fab matTooltip="Add New User" color="primary">
+    <button
+      mat-fab
+      matTooltip="Add New User"
+      color="primary"
+      (click)="createNewUser()"
+    >
       <mat-icon>add</mat-icon>
     </button>
   </div>

@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>{{ data ? "Edit User" : "Add New User" }}</h1>
+<div mat-dialog-content>
+  <user-from #userForm [userData]="data"></user-from>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button type="button" color="warn" mat-dialog-close>Cancel</button>
+  <button
+    [disabled]="userForm.userForm.invalid"
+    mat-button
+    type="button"
+    color="primary"
+    (click)="save(userForm.getFormData)"
+    cdkFocusInitial
+  >
+    {{ data ? "Edit" : "Create" }}
+  </button>
+</div>

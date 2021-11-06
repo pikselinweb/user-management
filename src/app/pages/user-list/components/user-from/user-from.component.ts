@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-// ANGULAR FORM
+import { Component, OnInit, Input } from '@angular/core';
 import {
   FormControl,
   Validators,
@@ -8,43 +7,57 @@ import {
   ValidatorFn,
   ValidationErrors,
 } from '@angular/forms';
+import { GlobalDataService } from '@core/services/common';
 // SERVICES
-import { AuthService } from '@core/services/auth';
+
 import { FormValidationService } from '@core/services/form';
+import { USER } from '@models/auth';
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: 'user-from',
+  templateUrl: './user-from.component.html',
+  styleUrls: ['./user-from.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class UserFromComponent implements OnInit {
+  @Input() userData!: USER;
+  readonly userRoles = [
+    { val: 1, viewVal: 'User' },
+    { val: 2, viewVal: 'Admin' },
+    { val: 3, viewVal: 'SuberAdmin' },
+  ];
+  currentUser: USER | null = this.globalData.currentUser$.getValue();
   // SHOW AND HIDE PW FOR USER EXPERIENCE
   showPassword: boolean = false;
-  // REGISTER FORM GROUP
-  registerForm: FormGroup;
+  // USER FORM GROUP
+  userForm: FormGroup;
   constructor(
-    private authService: AuthService,
-    private formValidationService: FormValidationService
+    private formValidationService: FormValidationService,
+    private globalData: GlobalDataService
   ) {
-    // INIT REGISTER FORM
-    this.registerForm = this.initRegisterForm;
+    // INIT USER FORM
+    this.userForm = this.inituserForm;
   }
 
   ngOnInit(): void {}
-  // REGISTER FORM PROPERTIES
-  private get initRegisterForm() {
+  // GET USER FORM DATA
+  get getFormData() {
+    return { ...this.userForm.value, role: this.userForm.value?.role || 1 };
+  }
+  // USER FORM PROPERTIES
+  private get inituserForm() {
     return new FormGroup(
       {
-        fullName: new FormControl('', [
+        fullName: new FormControl(this.userData?.fullName || '', [
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(60),
         ]),
-        email: new FormControl('', [
+        email: new FormControl(this.userData?.email || '', [
           Validators.required,
           Validators.email,
           Validators.minLength(5),
           Validators.maxLength(30),
         ]),
+        role: new FormControl(this.userData?.role || '', []),
         password: new FormControl('', [
           Validators.required,
           Validators.minLength(8),
@@ -64,35 +77,24 @@ export class RegisterComponent implements OnInit {
 
           this.passwordMatchValidator(),
         ]),
-      },
+      }
       // TODO CAN ACTIVATE FOR BETTER PERFORMANCE
       // { updateOn: 'blur' }
     );
   }
   // FIELD ERROR
   fieldHasError(fieldName: string): boolean {
-    return this.formValidationService.fieldHasError(
-      fieldName,
-      this.registerForm
-    );
+    return this.formValidationService.fieldHasError(fieldName, this.userForm);
   }
   // FIELD ERROR MESSAGE
   getErrorMessage(fieldName: string): string {
-    return this.formValidationService.getErrorMessage(
-      fieldName,
-      this.registerForm
-    );
+    return this.formValidationService.getErrorMessage(fieldName, this.userForm);
   }
-  // SUBMIT REGISTER FORM
-  onRegisterSubmit() {
-    if (this.registerForm.valid) {
-      this.authService.register(this.registerForm.value);
-    }
-  }
+
   // CUSTOM VALIDATOR
   private passwordMatchValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      const passwordVal = this.registerForm?.get('password')?.value;
+      const passwordVal = this.userForm?.get('password')?.value;
       const forbidden = control.value !== passwordVal;
       return forbidden ? { mismatch: true } : null;
     };

@@ -1,0 +1,69 @@
+<form [formGroup]="userForm">
+  <mat-form-field appearance="outline" class="d-block mb-2">
+    <mat-label>Fullname</mat-label>
+    <input formControlName="fullName" matInput placeholder="Fullname" />
+    <mat-error *ngIf="fieldHasError('fullName')">
+      {{ getErrorMessage("fullName") }}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="d-block mb-2">
+    <mat-label>Username</mat-label>
+    <input formControlName="email" matInput placeholder="Username" />
+    <mat-error *ngIf="fieldHasError('email')">
+      {{ getErrorMessage("email") }}
+    </mat-error>
+  </mat-form-field>
+  <ng-container *ngIf="currentUser?.role === 3">
+    <mat-form-field appearance="outline" class="d-block mb-2">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option *ngFor="let userRole of userRoles" [value]="userRole.val">
+          {{ userRole.viewVal }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="fieldHasError('role')">
+        {{ getErrorMessage("role") }}
+      </mat-error>
+    </mat-form-field>
+  </ng-container>
+  <ng-container *ngIf="!userData">
+    <mat-form-field appearance="outline" class="d-block mb-2">
+      <mat-label>Password</mat-label>
+      <input
+        formControlName="password"
+        matInput
+        placeholder="Password"
+        [type]="showPassword ? 'text' : 'password'"
+      />
+      <!-- SHOW AND HIDE PASSWORD -->
+      <button
+        color="accent"
+        matSuffix
+        mat-icon-button
+        [attr.aria-label]="showPassword ? 'Hide' : 'Show'"
+        (click)="showPassword = !showPassword"
+        type="button"
+      >
+        <mat-icon>{{
+          showPassword ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+      <!-- SHOW AND HIDE PASSWORD -->
+      <mat-error *ngIf="fieldHasError('password')">
+        {{ getErrorMessage("password") }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="d-block mb-2">
+      <mat-label>Password Repeat</mat-label>
+      <input
+        formControlName="passwordConfirm"
+        matInput
+        placeholder="Password Repeat"
+        [type]="showPassword ? 'text' : 'password'"
+      />
+      <mat-error *ngIf="fieldHasError('passwordConfirm')">
+        {{ getErrorMessage("passwordConfirm") }}
+      </mat-error>
+    </mat-form-field>
+  </ng-container>
+</form>

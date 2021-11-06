@@ -4,7 +4,7 @@ import { ApiService, GlobalDataService } from '../common';
 import { SnackMessageService } from '../notifcation';
 // MODELS
 import { HTTP_REQ } from '@models/common';
-import { USER } from '@models/auth';
+import { REGISTER_FORM_DATA, USER } from '@models/auth';
 @Injectable({
   providedIn: 'root',
 })
@@ -34,6 +34,26 @@ export class UserListService {
         message: error?.message || 'Failure during list users profile',
       });
       return [];
+    }
+  }
+  // ADD NEW USER
+  async addNewUser(formData: REGISTER_FORM_DATA): Promise<boolean> {
+    delete formData.passwordConfirm;
+    const httpData: HTTP_REQ = {
+      url: 'register',
+      body: { ...formData },
+    };
+    const { success, data, error } = await this.apiService.post(httpData);
+    if (success && data?.accessToken) {
+      this.snackMessage.show({
+        message: `User (${formData?.fullName}) has been created`,
+      });
+      return true;
+    } else {
+      this.snackMessage.show({
+        message: error?.message || 'Failure during register',
+      });
+      return false;
     }
   }
 }

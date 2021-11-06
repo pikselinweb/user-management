@@ -7,12 +7,16 @@ import { USER } from '@models/auth';
   styleUrls: ['./user-table.component.scss'],
 })
 export class UserTableComponent implements OnInit {
+  private readonly userRoles = ['Unknown', 'User', 'Admin', 'Super Admin'];
   @Input() userList!: USER[];
   constructor() {}
 
   ngOnInit(): void {}
+  visualizeUserRole(roleIndex: number | undefined): string {
+    return this.userRoles[roleIndex ? roleIndex : 0];
+  }
   // FOR LOOP PERFORMANCE
-  trackByFn(index: number, user:USER): number {
+  trackByFn(index: number, user: USER): number {
     return user?.id;
   }
 }
