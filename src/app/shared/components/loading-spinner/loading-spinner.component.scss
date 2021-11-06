@@ -1,0 +1,12 @@
+.loading-spinner-wrapper{
+
+  padding: 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 4px;
+  .loading-status-text{
+    padding-top: 20px;
+    font-style: italic;
+  }
+}

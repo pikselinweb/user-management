@@ -10,15 +10,17 @@ import { UserListComponent as UserListPage } from './user-list/user-list.compone
 const routes: Routes = [
   {
     path: '',
+
     component: PagesComponent,
     children: [
-      { path: '', component: HomePage },
+      { path: 'home',  component: HomePage },
       {
         path: 'user-list',
         component: UserListPage,
         canLoad: [AdminGuard],
         canActivate: [AdminGuard],
       },
+      {path:'',pathMatch:'full',redirectTo:'home'}
     ],
   },
 ];

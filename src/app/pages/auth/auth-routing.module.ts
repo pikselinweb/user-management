@@ -11,11 +11,11 @@ const routes: Routes = [
     component: AuthComponent,
     children: [
       // SET DEFAULT LOGIN PAGE
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
       // LOGIN AND REGISTER PAGES
       { path: 'login', component: LoginPage },
       { path: 'register', component: RegisterPage },
-
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: '**', redirectTo: '/error' },
     ],
   },
 ];

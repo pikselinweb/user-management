@@ -25,7 +25,7 @@ export class AdminGuard implements CanActivate, CanActivateChild, CanLoad {
     const currentUser = await this.authService.userProfile();
     const userIsAdmin = currentUser && currentUser?.role > 1 ? true : false;
     if (!userIsAdmin) {
-      return this.router.createUrlTree(['/']);
+      return this.router.createUrlTree(['/error/401']);
     }
     return userIsAdmin;
   }

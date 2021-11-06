@@ -5,14 +5,14 @@
       "password": "$2a$10$u60zXCkdabNd/vopiqwxxOiLI.W3OVX.VZSDaTdrIo/Q.QKkiLrHS",
       "fullName": "Demo Lord",
       "bio": "",
-      "role": 1,
+      "role": 2,
       "id": 1
     },
     {
       "email": "demo2@ho.co",
       "password": "$2a$10$WI0bJdJQKIYI6kA2jDjNE.NRK5FXyqTVEHwg2HC0E63v5X/PMrk7m",
       "fullName": "Demo Admin",
-      "role": 1,
+      "role": 3,
       "id": 2
     }
   ]
