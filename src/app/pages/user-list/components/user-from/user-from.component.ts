@@ -57,7 +57,7 @@ export class UserFromComponent implements OnInit {
       ...passwordValidator,
       this.passwordMatchValidator(),
     ];
-    console.log({ userData: this.userData });
+
     return new FormGroup(
       {
         fullName: new FormControl(this.userData?.fullName || '', [
