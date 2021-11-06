@@ -1,0 +1,13 @@
+.auth-wrapper {
+  width: 100%;
+  position: relative;
+  min-height: 100vh;
+  .auth-form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+  }
+}
