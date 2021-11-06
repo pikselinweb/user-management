@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 // SERVICES
 import { AuthService } from '@core/services/auth';
+import { FormValidationService } from '@core/services/form';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -20,7 +21,10 @@ export class RegisterComponent implements OnInit {
   showPassword: boolean = false;
   // REGISTER FORM GROUP
   registerForm: FormGroup;
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private formValidationService: FormValidationService
+  ) {
     // INIT REGISTER FORM
     this.registerForm = this.initRegisterForm;
   }
@@ -60,37 +64,23 @@ export class RegisterComponent implements OnInit {
 
           this.passwordMatchValidator(),
         ]),
-
-
       },
       { updateOn: 'blur' }
     );
   }
   // FIELD ERROR
   fieldHasError(fieldName: string): boolean {
-    const formField = this.registerForm.controls[fieldName];
-    return formField?.invalid && formField?.touched ? true : false;
+    return this.formValidationService.fieldHasError(
+      fieldName,
+      this.registerForm
+    );
   }
   // FIELD ERROR MESSAGE
   getErrorMessage(fieldName: string): string {
-    const formField = this.registerForm.get(fieldName);
-    const fieldErrors = this.registerForm.controls[fieldName].errors;
-    return formField?.hasError('required')
-      ? 'Reuired field'
-      : // JSON SERVER ONLY APPLY EMAIL
-      formField?.hasError('email')
-      ? 'Username must be email'
-      : formField?.hasError('minlength')
-      ? `Input should contain at least
-      ${this.getLengthError(fieldErrors?.['minlength'])} characters`
-      : formField?.hasError('maxlength')
-      ? `Input should contain max
-      ${this.getLengthError(fieldErrors?.['maxlength'])} characters`
-      : formField?.hasError('pattern')
-      ? 'Password must contain one uppercase, one lowercase and one special characters of #?!@$%^&*-'
-      : formField?.hasError('mismatch')
-      ? 'Passwords mismatch'
-      : 'Unknown error';
+    return this.formValidationService.getErrorMessage(
+      fieldName,
+      this.registerForm
+    );
   }
   // SUBMIT REGISTER FORM
   onRegisterSubmit() {
@@ -105,9 +95,5 @@ export class RegisterComponent implements OnInit {
       const forbidden = control.value !== passwordVal;
       return forbidden ? { mismatch: true } : null;
     };
-  }
-  // MAKE LENGTH ERRORS SHORTER
-  private getLengthError(fieldError: any): string {
-    return `(${fieldError?.actualLength} / ${fieldError?.requiredLength})`;
   }
 }

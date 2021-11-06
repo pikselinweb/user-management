@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // SERVICES
 import { AuthService } from '@core/services/auth';
+import { FormValidationService } from '@core/services/form';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -36,42 +37,26 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private formValidationService: FormValidationService
   ) {}
 
   ngOnInit(): void {}
   // FIELD ERROR
   fieldHasError(fieldName: string): boolean {
-    const formField = this.loginForm.controls[fieldName];
-    return formField?.invalid && formField?.touched ? true : false;
+    return this.formValidationService.fieldHasError(fieldName, this.loginForm);
   }
   // FIELD ERROR MESSAGE
   getErrorMessage(fieldName: string): string {
-    const formField = this.loginForm.get(fieldName);
-    const fieldErrors = this.loginForm.controls[fieldName].errors;
-    return formField?.hasError('required')
-      ? 'Reuired field'
-      : // JSON SERVER ONLY APPLY EMAIL
-      formField?.hasError('email')
-      ? 'Username must be email'
-      : formField?.hasError('minlength')
-      ? `Input should contain at least
-      ${this.getLengthError(fieldErrors?.['minlength'])} characters`
-      : formField?.hasError('maxlength')
-      ? `Input should contain max
-      ${this.getLengthError(fieldErrors?.['maxlength'])} characters`
-      : formField?.hasError('pattern')
-      ? 'Password must contain one uppercase, one lowercase and one special characters of #?!@$%^&*-'
-      : 'Unknown error';
+    return this.formValidationService.getErrorMessage(
+      fieldName,
+      this.loginForm
+    );
   }
   // SUBMIT LOGIN FORM
   onLoginSubmit() {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value);
     }
-  }
-  // MAKE LENGTH ERRORS SHORTER
-  private getLengthError(fieldError: any): string {
-    return `(${fieldError?.actualLength} / ${fieldError?.requiredLength})`;
   }
 }

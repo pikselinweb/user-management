@@ -15,8 +15,7 @@ const routes: Routes = [
       // PAGES
       { path: 'home', component: HomePage },
       { path: 'user-list', component: UserListPage },
-      // WRONG URL REDIRECT TO HOME
-      { path: '**', redirectTo: 'home' },
+
     ],
   },
 ];
