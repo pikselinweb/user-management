@@ -28,22 +28,36 @@ export class UserFromComponent implements OnInit {
   // SHOW AND HIDE PW FOR USER EXPERIENCE
   showPassword: boolean = false;
   // USER FORM GROUP
-  userForm: FormGroup;
+  userForm!: FormGroup;
   constructor(
     private formValidationService: FormValidationService,
     private globalData: GlobalDataService
   ) {
     // INIT USER FORM
-    this.userForm = this.inituserForm;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userForm = this.inituserForm;
+  }
   // GET USER FORM DATA
   get getFormData() {
     return { ...this.userForm.value, role: this.userForm.value?.role || 1 };
   }
   // USER FORM PROPERTIES
   private get inituserForm() {
+    const passwordValidator = [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(16),
+      Validators.pattern(
+        '(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$'
+      ),
+    ];
+    const passwordConfirmValidator = [
+      ...passwordValidator,
+      this.passwordMatchValidator(),
+    ];
+    console.log({ userData: this.userData });
     return new FormGroup(
       {
         fullName: new FormControl(this.userData?.fullName || '', [
@@ -58,25 +72,11 @@ export class UserFromComponent implements OnInit {
           Validators.maxLength(30),
         ]),
         role: new FormControl(this.userData?.role || '', []),
-        password: new FormControl('', [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(16),
-          Validators.pattern(
-            '(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$'
-          ),
-        ]),
-        passwordConfirm: new FormControl('', [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(16),
-
-          Validators.pattern(
-            '(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$'
-          ),
-
-          this.passwordMatchValidator(),
-        ]),
+        password: new FormControl('', this.userData ? [] : passwordValidator),
+        passwordConfirm: new FormControl(
+          '',
+          this.userData ? [] : passwordConfirmValidator
+        ),
       }
       // TODO CAN ACTIVATE FOR BETTER PERFORMANCE
       // { updateOn: 'blur' }

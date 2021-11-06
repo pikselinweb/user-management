@@ -56,4 +56,23 @@ export class UserListService {
       return false;
     }
   }
+  // UPDATE USER
+  // ! JSON SERVER AUTH NOT ALLOW THIS METHOD
+
+  async updateUser(user: USER): Promise<boolean> {
+    const httpData: HTTP_REQ = {
+      url: `api/users/put/${user.id}`,
+      body: user,
+    };
+    const { success, error, data } = await this.apiService.put(httpData);
+    if (success) {
+      console.log({ data });
+      return true;
+    } else {
+      this.snackMessage.show({
+        message: error?.message || 'Failure during update',
+      });
+      return false;
+    }
+  }
 }

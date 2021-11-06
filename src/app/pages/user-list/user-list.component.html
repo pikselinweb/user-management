@@ -1,16 +1,19 @@
-<ng-container *ngIf="userList | async as uList">
-  <div class="add-button-wrapper">
-    <button
-      mat-fab
-      matTooltip="Add New User"
-      color="primary"
-      (click)="createNewUser()"
-    >
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-  <ng-container *ngIf="uList.length > 0; else noItemTemplate">
-    <user-table [userList]="uList"></user-table>
+<div class="add-button-wrapper">
+  <button
+    mat-fab
+    matTooltip="Add New User"
+    color="primary"
+    (click)="createNewUser()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<ng-container *ngIf="userList && userList.length">
+  <ng-container *ngIf="userList.length > 0; else noItemTemplate">
+    <user-table
+      [userList]="userList"
+      (update)="updateUser($event)"
+    ></user-table>
   </ng-container>
   <ng-template #noItemTemplate>
     <div class="alert alert-warning">

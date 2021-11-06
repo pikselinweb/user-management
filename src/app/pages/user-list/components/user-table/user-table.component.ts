@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { USER } from '@models/auth';
 
 @Component({
@@ -9,6 +9,8 @@ import { USER } from '@models/auth';
 export class UserTableComponent implements OnInit {
   private readonly userRoles = ['Unknown', 'User', 'Admin', 'Super Admin'];
   @Input() userList!: USER[];
+  @Output() update = new EventEmitter<USER>();
+
   constructor() {}
 
   ngOnInit(): void {}

@@ -14,7 +14,12 @@
       style="vertical-align: middle"
     >
       <td>
-        <button mat-icon-button matTooltip="Edit" color="primary">
+        <button
+          mat-icon-button
+          matTooltip="Edit"
+          color="primary"
+          (click)="update.emit(user)"
+        >
           <mat-icon>edit</mat-icon>
         </button>
       </td>

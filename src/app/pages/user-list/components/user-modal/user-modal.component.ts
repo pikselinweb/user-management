@@ -15,9 +15,18 @@ export class UserModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: USER
   ) {}
   async save(formData: any) {
-    const succed = await this.userListService.addNewUser(formData);
+    const succed = this.data
+      ? // ! JSON SERVER AUTH NOT ALLOW UPDATE FOR USERS SCHEMA
+        // ! FOR THIS REASON DB WONT BE UPDATE
+        // ! AFTER REFRESHING CHANGES WILL BE LOST
+        // await this.userListService.updateUser({
+        //     ...formData,
+        //     id: this.data?.id,
+        //   })
+        true
+      : await this.userListService.addNewUser(formData);
     if (succed) {
-      this.dialogRef.close({ success: true });
+      this.dialogRef.close({ success: true, userData: formData });
     }
   }
   ngOnInit(): void {}

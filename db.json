@@ -28,6 +28,13 @@
       "fullName": "John Green",
       "role": 1,
       "id": 4
+    },
+    {
+      "email": "kg@denx.com",
+      "password": "$2a$10$eGvYAT8f/jde7G8WbY1mnutBOLwMXEf.ku23zm8KSeyX..jvZxjui",
+      "fullName": "Kang Chencu",
+      "role": 1,
+      "id": 5
     }
   ]
 }
