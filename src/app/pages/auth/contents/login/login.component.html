@@ -1,3 +1,7 @@
+<div class="login-header-wrapper">
+  <h2>Login</h2>
+  <p>Sign in to continue.</p>
+</div>
 <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
   <mat-form-field appearance="outline" class="d-block mb-2">
     <mat-label>Username</mat-label>
@@ -38,10 +42,10 @@
       color="primary"
       [disabled]="!loginForm.valid"
     >
-      Kayıt Ol
+      Login
     </button>
   </div>
   <div class="navigation-link">
-    <a [routerLink]="['/auth/login']">Register</a>
+   <b>Don't have an account? <a [routerLink]="['/auth/register']">Create new account</a></b>
   </div>
 </form>

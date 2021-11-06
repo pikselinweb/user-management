@@ -1,3 +1,6 @@
+<div class="register-header-wrapper">
+  <h2>Create new Account</h2>
+</div>
 <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
   <mat-form-field appearance="outline" class="d-block mb-2">
     <mat-label>Fullname</mat-label>
@@ -57,10 +60,11 @@
       color="primary"
       [disabled]="!registerForm.valid"
     >
-      Kayıt Ol
+    Register
     </button>
   </div>
   <div class="navigation-link">
-    <a [routerLink]="['/auth/login']">Register</a>
+    <b>Already registered? <a [routerLink]="['/auth/login']">Login here</a></b>
+
   </div>
 </form>
