@@ -29,7 +29,7 @@ Listing, 401 and 404).
 
 ## Running App
 
-After install depencies with `npm start` command you can run json server and Angular development easily.
+After install depencies with `npm start` command you can run json server and Angular development server easily.
 
 ## Rules
 
