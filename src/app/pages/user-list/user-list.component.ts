@@ -58,6 +58,20 @@ export class UserListComponent implements OnInit {
       });
     }
   }
+  async deleteUser(userData: PROFILE) {
+    const { success } = await this.userListService.deleteUser(userData?.id);
+    if (success) {
+      const userIndex = this.userList.findIndex(
+        (usr) => usr.id === userData?.id
+      );
+      if (userIndex >= 0) {
+        this.userList.splice(userIndex, 1);
+        this.messageService.show({
+          message: `User (${userData?.fullName}) has been removed successfully`,
+        });
+      }
+    }
+  }
   // OPEN MODAL WITH SOME CONFIGRATION
   private async openUserModal(user?: PROFILE) {
     const userDialog = this.dialog.open(UserModal, {

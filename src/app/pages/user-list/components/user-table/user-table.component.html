@@ -24,9 +24,25 @@
         </button>
       </td>
       <td>
-        <button mat-icon-button matTooltip="Delete" color="warn">
+        <button
+          mat-icon-button
+          matTooltip="Delete"
+          color="warn"
+          [matMenuTriggerFor]="deleteMenu"
+          [disabled]="isOwner(user)"
+        >
           <mat-icon>delete</mat-icon>
         </button>
+        <mat-menu #deleteMenu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>back_hand</mat-icon>
+            <span>Cancel</span>
+          </button>
+          <button mat-menu-item (click)="delete.emit(user)">
+            <mat-icon color="warn">delete_forever</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
       </td>
       <td>{{ user?.fullName }}</td>
       <td>{{ user?.email }}</td>

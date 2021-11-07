@@ -64,6 +64,16 @@
       "email": "tam@ho.co",
       "password": "$2a$10$miSGZU0wAsphm4o1bdlA3uwZZ3V.FBA.lH.laERvpmaFhm7U6peka",
       "id": "32611d04-4783-49ea-af4e-faf41554ab8c"
+    },
+    {
+      "email": "dasdasd@ho.co",
+      "password": "$2a$10$5pJ/9G/nBEOJqMV8OzVEo.p0AszSwqvSBX/9VYDUACWtS5K3tOMFm",
+      "id": "47e1c686-7171-4089-8db7-acae7e0684e7"
+    },
+    {
+      "email": "kokoca@mail.com",
+      "password": "$2a$10$szkbGjAAap4VgTcj6.KyMORRxxLn3Pe0h8JUFO299I08SE7jAcTwe",
+      "id": "d2c510bd-2782-463f-afb6-6d09e1d679ab"
     }
   ],
   "profiles": [
@@ -102,13 +112,6 @@
       "userId": 5
     },
     {
-      "email": "sjda@ho.co",
-      "fullName": "She Cask",
-      "role": 2,
-      "id": 6,
-      "userId": 6
-    },
-    {
       "id": 7,
       "email": "ksa@ho.co",
       "fullName": "Kei Slazse",
@@ -137,25 +140,11 @@
       "id": 10
     },
     {
-      "userId": "0f314007-e17e-4aaf-bd6e-58aed309076e",
-      "email": "laksd@ho.co",
-      "fullName": "TahOkeas Kaeas",
-      "role": 1,
+      "userId": "d2c510bd-2782-463f-afb6-6d09e1d679ab",
+      "email": "kokoca@mail.com",
+      "fullName": "Koko Casz",
+      "role": 2,
       "id": 11
-    },
-    {
-      "userId": "06d82de7-6463-4d08-a68d-9a4a4239436e",
-      "email": "lkasd@ho.co",
-      "fullName": "Cases Loasr",
-      "role": 1,
-      "id": 12
-    },
-    {
-      "userId": "32611d04-4783-49ea-af4e-faf41554ab8c",
-      "email": "tam@ho.co",
-      "fullName": "Tamm Koasp",
-      "role": 1,
-      "id": 13
     }
   ]
 }

@@ -77,7 +77,6 @@ export class UserListService {
     }
   }
 
-
   async updateUser(
     user: PROFILE
   ): Promise<{ success: boolean; user: PROFILE }> {
@@ -86,6 +85,22 @@ export class UserListService {
       body: user,
     };
     const { success, error, data } = await this.apiService.put(httpData);
+    if (success) {
+      return { success: true, user: data };
+    } else {
+      this.snackMessage.show({
+        message: error?.message || 'Failure during update',
+      });
+      return { success: false, user: data };
+    }
+  }
+  async deleteUser(
+    userID: number
+  ): Promise<{ success: boolean; user: PROFILE }> {
+    const httpData: HTTP_REQ = {
+      url: `profiles/${userID}`,
+    };
+    const { success, error, data } = await this.apiService.delete(httpData);
     if (success) {
       return { success: true, user: data };
     } else {

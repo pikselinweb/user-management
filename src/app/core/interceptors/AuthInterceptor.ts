@@ -33,7 +33,7 @@ export class AuthInterceptor implements HttpInterceptor {
         })
       : req;
     // ! REQUEST DELAYED FOR SHOWING SPINNER
-    return next.handle(clonedRequest).pipe(delay(1500),
+    return next.handle(clonedRequest).pipe(delay(500),
       map<HttpEvent<any>, any>((evt: HttpEvent<any>) => {
         if (evt instanceof HttpResponse) {
           // İstek bitiminde kuyruktan çıkarma
