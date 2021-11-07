@@ -11,7 +11,7 @@
         />
       </div>
       <div class="toolbar-navigation">
-        <ng-container *ngIf="currentUser | async as user">
+        <ng-container *ngIf="currentUser | async as user;else noUser">
           <a
             mat-icon-button
             [routerLink]="['/']"
@@ -50,6 +50,27 @@
             </button>
           </mat-menu>
         </ng-container>
+        <ng-template #noUser>
+          <button
+            matTooltip="User Menu"
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="User Menu"
+          >
+            <mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item disabled>
+              <mat-icon>no_accounts</mat-icon>
+              <span>Deleted User</span>
+            </button>
+            <button mat-menu-item (click)="logOut()">
+              <mat-icon color="warn">logout</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </ng-template>
+
       </div>
     </div>
   </div>

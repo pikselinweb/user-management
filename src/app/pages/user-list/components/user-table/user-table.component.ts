@@ -1,14 +1,17 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+// SERVICES
 import { GlobalDataService } from '@core/services/common';
+// MODELS
 import { PROFILE } from '@models/auth';
-
+// ENV
+import { environment } from '@environments/environment';
 @Component({
   selector: 'user-table',
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss'],
 })
 export class UserTableComponent implements OnInit {
-  private readonly userRoles = ['Unknown', 'User', 'Admin', 'Super Admin'];
+  private readonly userRoles = environment?.userRoles;
   @Input() userList!: PROFILE[];
   @Output() update = new EventEmitter<PROFILE>();
   @Output() delete = new EventEmitter<PROFILE>();

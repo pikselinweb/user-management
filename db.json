@@ -74,20 +74,80 @@
       "email": "kokoca@mail.com",
       "password": "$2a$10$szkbGjAAap4VgTcj6.KyMORRxxLn3Pe0h8JUFO299I08SE7jAcTwe",
       "id": "d2c510bd-2782-463f-afb6-6d09e1d679ab"
+    },
+    {
+      "email": "kralsasd@ho.co",
+      "password": "$2a$10$1rXuaUyN2bqiTFqY681zluLS6mHFW1RXCtvfDR9VBWmbNtIdXAGEW",
+      "id": "075f1e6b-89a2-4e3b-95ea-3751d9bbff29"
+    },
+    {
+      "email": "joasd@ho.co",
+      "password": "$2a$10$7iAVTjmG2oRNzkZqlzUnNu3cQqfIfoOWmrEHQsjYP9rsaG4c.axiO",
+      "id": "82342477-d53d-4091-8c70-f5aac17304e6"
+    },
+    {
+      "email": "dasdasdasd@ho.co",
+      "password": "$2a$10$kdMJw1NzB3Yu//2iKqY85euR0E7O1IiQhIUxmBFnxsDIEmmsT76eC",
+      "id": "1ff6ef5e-e6ca-414d-b006-dd1531b4f5d6"
+    },
+    {
+      "email": "superadmin@mail.com",
+      "password": "$2a$10$TcZPIQWMZR4cEbcUR/mM6umq404RPomkSmAR4hxghTdHdXzGfDvC2",
+      "id": "64fe14fc-f071-455e-88d0-102003470312"
+    },
+    {
+      "email": "admin@mail.com",
+      "password": "$2a$10$qeUAuo4rc44UG2r28pHpTePwQJdCkHuo5Y6r5bXybngeFBfyGbSiO",
+      "id": "b692129e-ef7f-4f5c-996e-8df976c6fccb"
+    },
+    {
+      "email": "customer@mail.com",
+      "password": "$2a$10$zSiP7wDew8eqzQ9jZlIHQedS7vIQB/Q5/ca4p9QxSrnk1sKbXk6PK",
+      "id": "62cb2b27-f892-4be1-b462-d8ae26283e1d"
+    },
+    {
+      "email": "dadad@ho.co",
+      "password": "$2a$10$SxqQLd.FWhWHFN/M/mCjvuPVpbHnBNJUVlwPiKdoLk662i/6.FCBa",
+      "id": "e3f63ea8-8bcf-4f72-8600-3aa947afccf5"
+    },
+    {
+      "email": "lasttest@ho.co",
+      "password": "$2a$10$iYxvE9cDdAf2.pK1/NmuHeZmcmOgQDhHpvaOowYrTb55ox4HUw3WC",
+      "id": "c2ab5d60-b034-42c8-bc9d-7861e8b19317"
+    },
+    {
+      "email": "dfsdfdsf@ho.co",
+      "password": "$2a$10$Ja5TTI98Wz72e4vqKl6/J.U3YOiKiqiHN1gadSzTOtk4G51KuBh5S",
+      "id": "d3fdfdba-620b-4bcb-a42a-d6dbd24db565"
+    },
+    {
+      "email": "demo@mail.com",
+      "password": "$2a$10$COSO26sqq4SA5ABslccvQeCZa67MRm5/3fYOMAeA9idrnX8RKoGRi",
+      "id": "7c8ffecc-19e3-474d-9690-f3b396d81f6e"
+    },
+    {
+      "email": "ldksad@ho.co",
+      "password": "$2a$10$UxFLgHC5taEKVnJOJaw4OOLljBQRhpN46jHtUfk4YjwPTIgzwggVG",
+      "id": "68d906d4-06b6-4b7b-ab74-d1a934965957"
+    },
+    {
+      "email": "noobadmin@ho.co",
+      "password": "$2a$10$vfiVlTxKJBVEnz3xf/12qOrIGNPEsdzXoyXTnIWv2d4gY9XdJVShO",
+      "id": "849c94e2-f2d6-41e3-ae19-5349f0d97d7f"
     }
   ],
   "profiles": [
     {
       "email": "demo1@ho.co",
       "fullName": "Demo Lord",
-      "role": 2,
+      "role": 3,
       "id": 1,
       "userId": 1
     },
     {
       "email": "demo2@ho.co",
-      "fullName": "Demo Admin",
-      "role": 3,
+      "fullName": "Demo Super Admin",
+      "role": 2,
       "id": 2,
       "userId": 2
     },
@@ -142,9 +202,65 @@
     {
       "userId": "d2c510bd-2782-463f-afb6-6d09e1d679ab",
       "email": "kokoca@mail.com",
-      "fullName": "Koko Casz",
-      "role": 2,
+      "fullName": "Koko Caszsi",
+      "role": 1,
       "id": 11
+    },
+    {
+      "userId": "075f1e6b-89a2-4e3b-95ea-3751d9bbff29",
+      "email": "kralsasd@ho.co",
+      "fullName": "Krals Cra Rca",
+      "role": 1,
+      "id": 12
+    },
+    {
+      "userId": "82342477-d53d-4091-8c70-f5aac17304e6",
+      "email": "joasd@ho.co",
+      "fullName": "Joa Sdal",
+      "role": 1,
+      "id": 13
+    },
+    {
+      "userId": "64fe14fc-f071-455e-88d0-102003470312",
+      "email": "superadmin@mail.com",
+      "fullName": "Super Admin",
+      "role": 3,
+      "id": 14
+    },
+    {
+      "userId": "b692129e-ef7f-4f5c-996e-8df976c6fccb",
+      "email": "admin@mail.com",
+      "fullName": "Admin",
+      "role": 2,
+      "id": 15
+    },
+    {
+      "userId": "62cb2b27-f892-4be1-b462-d8ae26283e1d",
+      "email": "customer@mail.com",
+      "fullName": "Customer",
+      "role": 1,
+      "id": 16
+    },
+    {
+      "userId": "7c8ffecc-19e3-474d-9690-f3b396d81f6e",
+      "email": "demo@mail.com",
+      "fullName": "Demo Account",
+      "role": 1,
+      "id": 17
+    },
+    {
+      "userId": "68d906d4-06b6-4b7b-ab74-d1a934965957",
+      "email": "ldksad@ho.co",
+      "fullName": "Ronca Mestip",
+      "role": 1,
+      "id": 18
+    },
+    {
+      "userId": "849c94e2-f2d6-41e3-ae19-5349f0d97d7f",
+      "email": "noobadmin@ho.co",
+      "fullName": "Noob Customer",
+      "role": 1,
+      "id": 19
     }
   ]
 }

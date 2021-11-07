@@ -1,5 +1,4 @@
 {
   "users": 400,
-  "/users/:email": "/posts?email=:email",
   "profiles": 660
 }

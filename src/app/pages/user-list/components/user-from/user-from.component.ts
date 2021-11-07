@@ -7,11 +7,13 @@ import {
   ValidatorFn,
   ValidationErrors,
 } from '@angular/forms';
-import { GlobalDataService } from '@core/services/common';
-// SERVICES
 
+// SERVICES
+import { GlobalDataService } from '@core/services/common';
 import { FormValidationService } from '@core/services/form';
+// MODELS
 import { PROFILE } from '@models/auth';
+
 @Component({
   selector: 'user-from',
   templateUrl: './user-from.component.html',
@@ -20,7 +22,7 @@ import { PROFILE } from '@models/auth';
 export class UserFromComponent implements OnInit {
   @Input() userData!: PROFILE;
   readonly userRoles = [
-    { val: 1, viewVal: 'User' },
+    { val: 1, viewVal: 'Customer' },
     { val: 2, viewVal: 'Admin' },
     { val: 3, viewVal: 'Super Admin' },
   ];

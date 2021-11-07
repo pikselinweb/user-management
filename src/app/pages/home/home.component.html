@@ -1,1 +1,116 @@
-<p>home works!</p>
+<mat-card class="home-card my-3">
+  <ng-container *ngIf="currentUser$ | async as currentUser">
+    <mat-card-header *ngIf="currentUser">
+      <div mat-card-avatar class="home-header-image"></div>
+      <mat-card-title>{{ currentUser?.fullName }}</mat-card-title>
+      <mat-card-subtitle>{{ userRoles[currentUser.role] }}</mat-card-subtitle>
+    </mat-card-header>
+  </ng-container>
+
+  <mat-card-content>
+    <h2>User Authorization Project</h2>
+    <p>
+      Welcome to User Management App! There is 3 types (Super Admin, Admin,
+      Customer) of roles. This app has 6 pages (Login, Register, Home, User
+      Listing, 401 and 404).
+    </p>
+
+    <blockquote>
+      Some available accounts:
+      <ul>
+        <li>superadmin@mail.com</li>
+        <li>admin@mail.com</li>
+        <li>customer@mail.com</li>
+      </ul>
+
+      All passwords are same: <code>12345@Aa</code>
+
+      <p>
+        You could take a look to <code>db.json</code> for more account data.
+      </p>
+    </blockquote>
+    <h2>Rules</h2>
+    <ul>
+      <li>
+        All users can view Homepage when they logged in. Homepage protected by
+        <code>LoginGuard (Router-Guard)</code> that allow to only authorized
+        users. If user have not token will be redirect to Login page.
+      </li>
+      <li>
+        Navigation provided by Navbar buttons by using <code>RouterLink</code>.
+        User List button will be hidden if you are not Super Admin.
+      </li>
+      <li>
+        User List page protected by
+        <code>AdminGuard (Router-Guard)</code> that allow to access only users
+        has role <b>Super Admin</b>. If <b>Customer</b> try to go User List page
+        will be redirect to 401 - Forbidden page.
+      </li>
+      <li>
+        Edit user, add user, delete user functions available in User List page.
+      </li>
+      <li>
+        Username cannot be change because of used to login. Also changing the
+        password is not allowed.
+      </li>
+      <li>
+        Admin can't change user roles and can't list other admins. When admin
+        create a user, user's role will be <b>Customer</b> by the default. Also
+        Admin can delete only customers.
+      </li>
+      <li>Super Admin can update role and can list all users.</li>
+      <li>
+        Super Admin can't delete itself, but can delete other Super Admin's
+        accounts.
+      </li>
+      <li>
+        Everyone can login or register to application. But if logged user try to
+        reach Login or Register page will be redirect to Home page. Login and
+        Register pages protected by <code>NotLoginGuard (Router-Guard)</code>.
+      </li>
+      <li>
+        This app uses <code>JSON Server</code> for creating fake database and
+        <code>JSON Server Auth</code> to manage login - register operations. By
+        the way auth token has 1 hour life time.
+      </li>
+    </ul>
+    <h2>Roles</h2>
+    <ul>
+      <li>Super Admin <i>(role value: 3)</i></li>
+      <li>Admin <i>(role value: 2)</i></li>
+      <li>Customer <i>(role value: 1)</i></li>
+    </ul>
+    <h2>About App</h2>
+    <ul>
+      <li>Created with Angular v13</li>
+      <li>Uses Angular Material Framework for app compoments</li>
+      <li>CSS template engine is SCSS</li>
+      <li>
+        Bootstrap Reboot, Bootstrap Grid, Bootstrap Tables and Bootsrap Aler
+        imported with Sass
+      </li>
+      <li>Ngx Cookie Service used to handle cookies</li>
+      <li>User ids gererated with uuid</li>
+      <li>concurrently used to run multiple script commands in same time</li>
+    </ul>
+    <h2>TO DO</h2>
+    <ul>
+      <li>NGRX should be use to state managament</li>
+      <li>
+        Usualy i use <code>toPromise()</code> for converting observables to
+        promise then use in async functions with await. I think it make codes
+        more readable and avoid problems like cold observale and unsubscribe.
+        Now <code>toPromise()</code> is depraced, need to find new method
+        instead of it.
+      </li>
+    </ul>
+    <h2>Known Issues</h2>
+    <ul>
+      <li>
+        When Super Admin change its account role to Admin still can use Super
+        Admin privileges. To fix this issue should be disabled role input on
+        user form if current user is same.
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>
