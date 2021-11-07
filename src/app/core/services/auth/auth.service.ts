@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 // TO NAVIGATE AFTER LOGIN
 import { Router } from '@angular/router';
+
+import { v4 as uuidv4 } from 'uuid';
 // SAVE TOKEN TO COOKIES
 import { CookieService } from 'ngx-cookie-service';
 // SERVICES
@@ -8,7 +10,7 @@ import { ApiService, GlobalDataService } from '../common';
 import { SnackMessageService } from '../notifcation';
 // MODELS
 import { HTTP_REQ } from '@models/common';
-import { LOGIN_FORM_DATA, REGISTER_FORM_DATA, USER } from '@models/auth';
+import { LOGIN_FORM_DATA, PROFILE, REGISTER_FORM_DATA } from '@models/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -24,13 +26,36 @@ export class AuthService {
   // REGISTER
   async register(formData: REGISTER_FORM_DATA) {
     delete formData.passwordConfirm;
+    // ! JSON SERVER NOT RETURN ID VALUE
+    const userUUID = uuidv4();
     const httpData: HTTP_REQ = {
       url: 'register',
-      body: { ...formData, role: 1 },
+      body: {
+        email: formData.email,
+        password: formData.password,
+        id: userUUID,
+      },
     };
     const { success, data, error } = await this.apiService.post(httpData);
+
     if (success && data?.accessToken) {
-      this.setCookiesAndNavigate(data?.accessToken, formData?.email);
+      // ! JSON AUTH SERVER HAS NOT PUT OR DELETE FOR USERS SCHEMA
+      // ! ADDITIONAL INFO WILL BE SAVE IN PROFILES SCHEMA
+      this.setCookies(data?.accessToken, formData?.email);
+
+      const profileHttpData: HTTP_REQ = {
+        url: 'profiles',
+        body: {
+          userId: userUUID,
+          email: formData.email,
+          fullName: formData.fullName,
+          role: 1,
+        },
+      };
+      const profileResult = await this.apiService.post(profileHttpData);
+      if (profileResult?.success) {
+        this.router.navigate(['']);
+      }
     } else {
       this.snackMessage.show({
         message: error?.message || 'Failure during register',
@@ -42,21 +67,20 @@ export class AuthService {
     const httpData: HTTP_REQ = { url: 'login', body: formData };
     const { success, data, error } = await this.apiService.post(httpData);
     if (success && data?.accessToken) {
-      this.setCookiesAndNavigate(data?.accessToken, formData?.email);
+      this.setCookies(data?.accessToken, formData?.email);
+      this.router.navigate(['']);
     } else {
       this.snackMessage.show({
         message: error?.message || 'Failure during login',
       });
     }
   }
-  async userProfile(): Promise<USER | null> {
+  async userProfile(): Promise<PROFILE | null> {
     const userMail = this.cookieService.get('email');
-    const httpData: HTTP_REQ = { url: 'users', params: { email: userMail } };
+    const httpData: HTTP_REQ = { url: 'profiles', params: { email: userMail } };
     const { success, error, data } = await this.apiService.get(httpData);
     if (success && data?.length > 0) {
-      const userInfo: USER = data[0];
-      // ! FALLOWING OPERATION MUST BE IN BACKEND
-      delete userInfo.password;
+      const userInfo: PROFILE = data[0];
       this.globalDataService.currentUser$.next(userInfo);
       return userInfo;
     } else {
@@ -72,7 +96,7 @@ export class AuthService {
     this.globalDataService.currentUser$.next(null);
     this.router.navigate(['/auth']);
   }
-  private setCookiesAndNavigate(oAuthToken: string, email: string) {
+  private setCookies(oAuthToken: string, email: string) {
     // JSON-SERVER TOKEN EXPIRES IN 1 HOUR
     const expires = this.expireTime1Hour;
     this.cookieService.set('authToken', oAuthToken, {
@@ -80,7 +104,6 @@ export class AuthService {
       expires,
     });
     this.cookieService.set('email', email, { path: '/', expires });
-    this.router.navigate(['']);
   }
   // GET NEXT 1 HOUR
   private get expireTime1Hour() {

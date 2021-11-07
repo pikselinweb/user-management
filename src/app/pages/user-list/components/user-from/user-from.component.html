@@ -1,18 +1,19 @@
 <form [formGroup]="userForm">
   <mat-form-field appearance="outline" class="d-block mb-2">
-    <mat-label>Fullname</mat-label>
-    <input formControlName="fullName" matInput placeholder="Fullname" />
-    <mat-error *ngIf="fieldHasError('fullName')">
-      {{ getErrorMessage("fullName") }}
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="outline" class="d-block mb-2">
     <mat-label>Username</mat-label>
     <input formControlName="email" matInput placeholder="Username" />
     <mat-error *ngIf="fieldHasError('email')">
       {{ getErrorMessage("email") }}
     </mat-error>
   </mat-form-field>
+  <mat-form-field appearance="outline" class="d-block mb-2">
+    <mat-label>Fullname</mat-label>
+    <input formControlName="fullName" matInput placeholder="Fullname" />
+    <mat-error *ngIf="fieldHasError('fullName')">
+      {{ getErrorMessage("fullName") }}
+    </mat-error>
+  </mat-form-field>
+
   <ng-container *ngIf="currentUser?.role === 3">
     <mat-form-field appearance="outline" class="d-block mb-2">
       <mat-label>Role</mat-label>

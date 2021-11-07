@@ -1,7 +1,9 @@
 export interface USER {
   id: number;
-  fullName: string;
   email: string;
+}
+export interface PROFILE extends USER {
+  userId: string;
+  fullName: string;
   role: number;
-  password?:string;
 }

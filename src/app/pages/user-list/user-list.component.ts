@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserListService } from '@core/services/auth';
 import { SnackMessageService } from '@core/services/notifcation';
 // MODELS
-import { USER } from '@models/auth';
+import { PROFILE } from '@models/auth';
 import { UserModal } from './components';
 // COMP
 @Component({
@@ -14,7 +14,7 @@ import { UserModal } from './components';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-  userList!: USER[];
+  userList!: PROFILE[];
   constructor(
     private userListService: UserListService,
     private dialog: MatDialog,
@@ -26,11 +26,9 @@ export class UserListComponent implements OnInit {
   }
   async createNewUser() {
     try {
-      const { success } = await this.openUserModal();
+      const { success, userData } = await this.openUserModal();
       if (success) {
-        // ! JSON SERVER DOES NOT RETURN ID ON REGISTER USER
-        // ! FOR THIS REASON LIST MUST BE REFRESH BY CALLING  API AGAIN
-        this.userList = await this.userListService.getAllUsers();
+        this.userList.push(userData);
       }
     } catch (error: any) {
       this.messageService.show({
@@ -38,10 +36,8 @@ export class UserListComponent implements OnInit {
       });
     }
   }
-  // ! JSON SERVER AUTH NOT ALLOW UPDATE FOR USERS SCHEMA
-  // ! FOR THIS REASON DB WONT BE UPDATE
-  // ! AFTER REFRESHING CHANGES WILL BE LOST
-  async updateUser(user: USER) {
+
+  async updateUser(user: PROFILE) {
     try {
       const { success, userData } = await this.openUserModal(user);
       if (success) {
@@ -51,8 +47,7 @@ export class UserListComponent implements OnInit {
         if (userIndex >= 0) {
           this.userList[userIndex] = userData;
           this.messageService.show({
-            message:
-              'User has been updated successfuly but changes wont save to db. JSON SERVER AUTH package does not support push method',
+            message: `User (${userData?.fullName}) has been updated successfully`,
             duration: 4000,
           });
         }
@@ -63,7 +58,8 @@ export class UserListComponent implements OnInit {
       });
     }
   }
-  private async openUserModal(user?: USER) {
+  // OPEN MODAL WITH SOME CONFIGRATION
+  private async openUserModal(user?: PROFILE) {
     const userDialog = this.dialog.open(UserModal, {
       width: '450px',
       maxWidth: '100%',

@@ -11,20 +11,20 @@ import { GlobalDataService } from '@core/services/common';
 // SERVICES
 
 import { FormValidationService } from '@core/services/form';
-import { USER } from '@models/auth';
+import { PROFILE } from '@models/auth';
 @Component({
   selector: 'user-from',
   templateUrl: './user-from.component.html',
   styleUrls: ['./user-from.component.scss'],
 })
 export class UserFromComponent implements OnInit {
-  @Input() userData!: USER;
+  @Input() userData!: PROFILE;
   readonly userRoles = [
     { val: 1, viewVal: 'User' },
     { val: 2, viewVal: 'Admin' },
     { val: 3, viewVal: 'Super Admin' },
   ];
-  currentUser: USER | null = this.globalData.currentUser$.getValue();
+  currentUser: PROFILE | null = this.globalData.currentUser$.getValue();
   // SHOW AND HIDE PW FOR USER EXPERIENCE
   showPassword: boolean = false;
   // USER FORM GROUP
@@ -65,12 +65,19 @@ export class UserFromComponent implements OnInit {
           Validators.minLength(3),
           Validators.maxLength(60),
         ]),
-        email: new FormControl(this.userData?.email || '', [
-          Validators.required,
-          Validators.email,
-          Validators.minLength(5),
-          Validators.maxLength(30),
-        ]),
+        email: new FormControl(
+          {
+            value: this.userData?.email || '',
+            //! EMAIL CANT BE CHANGE BECAUSE OF USED TO AUTH
+            disabled: this.userData ? true : false,
+          },
+          [
+            Validators.required,
+            Validators.email,
+            Validators.minLength(5),
+            Validators.maxLength(30),
+          ]
+        ),
         role: new FormControl(this.userData?.role || '', []),
         password: new FormControl('', this.userData ? [] : passwordValidator),
         passwordConfirm: new FormControl(

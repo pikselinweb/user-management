@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { USER } from '@models/auth';
+import { PROFILE } from '@models/auth';
 
 @Component({
   selector: 'user-table',
@@ -8,8 +8,8 @@ import { USER } from '@models/auth';
 })
 export class UserTableComponent implements OnInit {
   private readonly userRoles = ['Unknown', 'User', 'Admin', 'Super Admin'];
-  @Input() userList!: USER[];
-  @Output() update = new EventEmitter<USER>();
+  @Input() userList!: PROFILE[];
+  @Output() update = new EventEmitter<PROFILE>();
 
   constructor() {}
 
@@ -18,7 +18,7 @@ export class UserTableComponent implements OnInit {
     return this.userRoles[roleIndex ? roleIndex : 0];
   }
   // FOR LOOP PERFORMANCE
-  trackByFn(index: number, user: USER): number {
+  trackByFn(index: number, user: PROFILE): number {
     return user?.id;
   }
 }
