@@ -1,4 +1,5 @@
 - [User Authorization Project](#user-authorization-project)
+  - [Running App](#running-app)
   - [Rules](#rules)
   - [Roles](#roles)
   - [About App](#about-app)
@@ -25,6 +26,10 @@ Listing, 401 and 404).
 >   All passwords are same: `12345@Aa`
 >
 >   You could take a look to db.json for more account data.
+
+## Running App
+
+After install depencies with `npm start` command you can run json server and Angular development easily.
 
 ## Rules
 
